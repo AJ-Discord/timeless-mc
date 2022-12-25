@@ -1,0 +1,33 @@
+{
+  "name": "v14-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AJ-Discord/timeless-mc.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AJ-Discord/timeless-mc/issues"
+  },
+  "homepage": "https://github.com/AJ-Discord/timeless-mc#readme",
+  "dependencies": {
+    "ascii-table": "^0.0.9",
+    "chalk": "4.0.0",
+    "discord.js": "^14.7.1",
+    "dotenv": "^16.0.3",
+    "glob": "^8.0.3",
+    "mongoose": "^6.8.1",
+    "nodeactyl": "^3.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
