@@ -12,11 +12,7 @@ module.exports = {
     if (!interaction.isButton()) return;
 
     const Button = client.buttons.get(interaction.customId);
-    if (!Button)
-      return interaction.reply({
-        content: "🔴 This button is outdated",
-        ephemeral: true,
-      });
+    if (!Button) return
 
     if (
       Button.permission &&

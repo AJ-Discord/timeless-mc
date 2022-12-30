@@ -1,6 +1,7 @@
 const {
   ChatInputCommandInteraction,
   SlashCommandBuilder,
+  Client
 } = require("discord.js");
 
 module.exports = {
@@ -11,8 +12,9 @@ module.exports = {
   /**
    *
    * @param {ChatInputCommandInteraction} interaction
+   * @param {Client} client
    */
-  execute(interaction) {
+  execute(interaction, client) {
     return interaction.reply({ content: "pong", ephemeral: true });
   },
 };

@@ -1,6 +1,9 @@
 const { Collection } = require("discord.js");
 const emoji = require("../emojis.json");
 
+const Nodeactyl = require('nodeactyl');
+const application = new Nodeactyl.NodeactylApplication(process.env.panelAddress, process.env.panelToken);
+
 async function loadCollections(client) {
   client.events = new Collection();
   client.commands = new Collection();
@@ -11,6 +14,7 @@ async function loadCollections(client) {
   client.selectMenus = new Collection();
   client.modals = new Collection();
   client.emotes = emoji;
+  client.panel = application;
 }
 
 module.exports = { loadCollections };

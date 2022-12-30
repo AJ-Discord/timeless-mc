@@ -9,7 +9,7 @@ module.exports = {
    * @param {Client} client
    */
   execute(interaction, client) {
-    if (!interaction.isSelectMenu()) return;
+    if (!interaction.isStringSelectMenu()) return;
 
     const Menu = client.selectMenus.get(interaction.customId);
     if (!Menu)
