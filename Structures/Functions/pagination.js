@@ -1,6 +1,10 @@
-const { ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
+const { ButtonBuilder, ButtonStyle, ActionRowBuilder, ChatInputCommandInteraction } = require("discord.js");
 
-module.exports = async (interaction, pages, ephemeral, time = 60000) => {
+/**
+ * 
+ * @param {ChatInputCommandInteraction} interaction 
+ */
+async function pagination(interaction, pages, ephemeral, time = 60000) {
     if (!interaction || !pages || !(pages?.length > 0) || !(time > 10000))
         throw new Error("Invalid Parameter");
 
@@ -36,8 +40,8 @@ module.exports = async (interaction, pages, ephemeral, time = 60000) => {
         ephemeral: ephemeral ? true : false,
     };
 
-    const msg = interaction.replied
-        ? await interaction.followUp(data)
+    const msg = (interaction.replied || interaction.deferred)
+        ? await interaction.editReply(data)
         : await interaction.reply(data);
 
     const col = msg.createMessageComponentCollector({
@@ -83,4 +87,7 @@ module.exports = async (interaction, pages, ephemeral, time = 60000) => {
             embeds: [pages[index]],
         });
     });
-};
+
+}
+
+module.exports = { pagination };

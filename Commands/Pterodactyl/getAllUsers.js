@@ -5,12 +5,12 @@ const {
     PermissionFlagsBits,
     EmbedBuilder
 } = require("discord.js");
-const page = require("../../Structures/Functions/pagination")
+const { pagination } = require("../../Structures/Functions")
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("get-all-users")
-        .setDescription("It will return a list of users registered on the panel")
+        .setDescription("Gives a list of users present in the panel")
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
 
     /**
@@ -19,6 +19,8 @@ module.exports = {
      * @param {Client} client
      */
     execute(interaction, client) {
+        interaction.deferReply({ ephemeral: true })
+
         client.panel
             .getAllUsers()
             .then((docs) => {
@@ -45,13 +47,13 @@ module.exports = {
                 });
 
                 if (!(pages?.length > 0))
-                    return interaction.reply({ embeds: new EmbedBuilder().setTitle(`Oops!! There seems to be trouble`).setDescription(`There was an issue searching for users please make a try after a few minutes if the issue persists contact the developer`).setColor("Red"), ephemeral: true });
+                    return interaction.editReply({ embeds: new EmbedBuilder().setTitle(`Oops!! There seems to be trouble`).setDescription(`There was an issue searching for users please make a try after a few minutes if the issue persists contact the developer`).setColor("Red"), ephemeral: true });
 
-                page(interaction, pages, (ephemeral = true))
+                pagination(interaction, pages, (ephemeral = true))
             })
             .catch((err) => {
                 console.log(err)
-                interaction.reply({
+                interaction.editReply({
                     content: "An error occurred while executing this command",
                     ephemeral: true,
                 });

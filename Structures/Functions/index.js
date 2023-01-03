@@ -1,6 +1,7 @@
 const { loadCollections } = require("./collectionLoader");
 const { loadHandlers } = require("../Handlers");
 const { loadSystems } = require("./systemLoader");
+const { pagination } = require("./pagination")
 
 async function loadFunctions(client) {
   loadCollections(client);
@@ -8,4 +9,4 @@ async function loadFunctions(client) {
   loadSystems(client);
 }
 
-module.exports = { loadFunctions };
+module.exports = { loadFunctions, pagination };

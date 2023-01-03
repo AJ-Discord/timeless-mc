@@ -11,8 +11,8 @@ const {
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("register-user")
-        .setDescription("adds a user to the pterodactyl panel")
+        .setName("create-user")
+        .setDescription("Creates a user in the pterodactyl panel")
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .addStringOption(option =>
             option
@@ -62,11 +62,11 @@ module.exports = {
 
         client.panel.createUser(email, username, first_name, last_name, password)
             .then(response => {
-                return interaction.reply({ content: `Successfully registered ${username} onto the panel`, ephemeral: true });
+                return interaction.reply({ content: `Successfully created an account for \'${email}\' on the panel`, ephemeral: true });
             })
             .catch(error => {
                 console.log(error);
-                return interaction.reply({ content: `Error Registering ${username} onto the panel`, ephemeral: true });
+                return interaction.reply({ content: `Error creating an account for \'${email}\' on the panel`, ephemeral: true });
             })
 
 
