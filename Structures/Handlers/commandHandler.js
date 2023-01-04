@@ -11,7 +11,6 @@ async function loadCommands(client) {
   const table = new ascii().setHeading("Commands", "Status");
 
   await client.commands.clear();
-  await client.subCommands.clear();
 
   let PublicGuildCommandsArray = [];
   let DevGuildCommandsArray = [];
@@ -25,9 +24,6 @@ async function loadCommands(client) {
 
   Files.forEach(async (file) => {
     const command = require(file);
-
-    if (command.subCommand)
-      return client.subCommands.set(command.subCommand, command);
 
     if (!command.data) return;
 
@@ -55,8 +51,7 @@ async function loadCommands(client) {
         setTimeout(() => {
           console.log(
             chalk.cyan(
-              `\nLoaded ${DevGuildCommandsArray.length} ${
-                DevGuildCommandsArray.length > 1 ? "commands" : "command"
+              `\nLoaded ${DevGuildCommandsArray.length} ${DevGuildCommandsArray.length > 1 ? "commands" : "command"
               } for the Developer server`
             )
           );
